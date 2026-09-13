@@ -1,0 +1,18 @@
+[project]
+name = "gigadream-fieldkit"
+version = "0.1.0"
+description = "Beachpunk Gigadream / Diamond Riot / TERRA II lore CLI"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Tony Jose Matos" }]
+license = { text = "MIT" }
+
+[project.scripts]
+gigadream = "gigadream:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["gigadream"]

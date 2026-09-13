@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*_pack.txt
+dark20.txt
+posh_pack.txt
+gigadream_pack.txt
