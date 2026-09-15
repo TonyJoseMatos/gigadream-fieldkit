@@ -1,48 +1,11 @@
 #!/usr/bin/env python3
-"""SPEKTRALTEK HANGAR — TERRA II starjet flight computer"""
+"""SPEKTRALTEK HANGAR — TERRA II starjet flight computer (canon-backed)"""
 
 import argparse
 import random
 import textwrap
 
-HULLS = [
-    "needle-foil interceptor",
-    "salt-scored dropship",
-    "choir-engine bomber",
-    "orisha-keel courier",
-    "blackout carnival gunship",
-    "dune-antenna scout",
-    "reliquary tanker",
-    "masterless blade-wing",
-]
-
-DRIVES = [
-    "spektraltek prism core",
-    "77K film-gate thruster",
-    "glyph-current ram",
-    "salvagecore afterburner",
-    "Taíno star-wake coil",
-    "diamond-riot pulse lattice",
-]
-
-LIVERIES = [
-    "Ektar red over wet chrome",
-    "whiteout salt camo",
-    "violet heat-shimmer foil",
-    "kitchcore grain gold",
-    "mourning-chrome blackout",
-    "blood-gold eclipse bands",
-    "light-leak slash decals",
-]
-
-SQUADRONS = [
-    "NO PLACE LIKE HOME",
-    "SWORDS WITH NO MASTERS",
-    "AFTER-GATE RINCON",
-    "CULEBRA MIDNIGHT",
-    "LOIZA BREAKWATER",
-    "TERRA II WITNESS",
-]
+import canon
 
 MISSIONS = [
     "skim the Lost Coast fogline and photograph the gate",
@@ -51,23 +14,6 @@ MISSIONS = [
     "hold blackout carnival airspace until the choir dies",
     "cut a star-wake over Culebra midnight antenna",
     "retrieve a masterless sword from an airship wreck",
-]
-
-SITES = [
-    "TERRA II blackout beach",
-    "Culebra midnight antenna",
-    "Isabela dune antenna",
-    "Loiza breakwater",
-    "after-gate Rincon",
-    "cathedral of rusted rebar",
-]
-
-FILM = [
-    "Kodak Ektar 100",
-    "77K UHD overcrank",
-    "halation bloom",
-    "salt-scratched gate",
-    "chemical light leak slash",
 ]
 
 SILHOUETTES = [
@@ -94,23 +40,23 @@ SILHOUETTES = [
 
 
 def article(word):
-    return "an" if word[:1].lower() in "aeiou" else "a"
+    return canon.article(word)
 
 
 def mint(seed=None):
     if seed is not None:
         random.seed(seed)
-    hull = random.choice(HULLS)
+    hull = random.choice(canon.VESSELS["HANGAR"])
     tag = random.choice("ABCDEFGH") + str(random.randint(10, 99))
     return {
         "call": f"STJ-{tag}",
         "hull": hull,
-        "drive": random.choice(DRIVES),
-        "livery": random.choice(LIVERIES),
-        "squad": random.choice(SQUADRONS),
+        "drive": random.choice(canon.DRIVES),
+        "livery": random.choice(canon.LIVERIES),
+        "squad": random.choice(canon.SQUADRONS),
         "mission": random.choice(MISSIONS),
-        "site": random.choice(SITES),
-        "film": random.choice(FILM),
+        "site": random.choice(canon.PLACES["HANGAR"] + canon.PLACES["DARK"]),
+        "film": random.choice(canon.FILM),
     }
 
 
